@@ -74,6 +74,14 @@
   --theme-drawer-text:      #444444;
   --theme-logo-name:        var(--clr-dark);
   --theme-logo-sub:         #777777;
+
+  /* Content surfaces */
+  --theme-section-bg:       #f5f5f5;
+  --theme-section-bg-alt:   #ffffff;
+  --theme-card-bg:          #ffffff;
+  --theme-heading-text:     var(--clr-dark);
+  --theme-body-muted:       #484848;
+  --theme-excerpt-text:     #4a4a4a;
 }
 
 [data-theme="dark"] {
@@ -89,6 +97,14 @@
   --theme-drawer-text:      var(--clr-grey-lt);
   --theme-logo-name:        var(--clr-white);
   --theme-logo-sub:         var(--clr-grey);
+
+  /* Content surfaces */
+  --theme-section-bg:       var(--clr-dark-2);
+  --theme-section-bg-alt:   var(--clr-dark-3);
+  --theme-card-bg:          #2c2c2c;
+  --theme-heading-text:     var(--clr-white);
+  --theme-body-muted:       var(--clr-grey-lt);
+  --theme-excerpt-text:     #aaaaaa;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -105,6 +121,14 @@
     --theme-drawer-text:      var(--clr-grey-lt);
     --theme-logo-name:        var(--clr-white);
     --theme-logo-sub:         var(--clr-grey);
+
+    /* Content surfaces */
+    --theme-section-bg:       var(--clr-dark-2);
+    --theme-section-bg-alt:   var(--clr-dark-3);
+    --theme-card-bg:          #2c2c2c;
+    --theme-heading-text:     var(--clr-white);
+    --theme-body-muted:       var(--clr-grey-lt);
+    --theme-excerpt-text:     #aaaaaa;
   }
 }
 
@@ -196,7 +220,7 @@ address {
   font-family: var(--ff-display);
   font-size: clamp(2rem, 5vw, 3.25rem);
   line-height: 1.04;
-  color: var(--clr-dark);
+  color: var(--theme-heading-text);
 }
 
 .section-title--light {
@@ -289,16 +313,16 @@ address {
   box-shadow: 0 8px 28px rgba(0,0,0,0.2);
 }
 
-/* Outline (on light bg) */
+/* Outline (adapts to theme) */
 .btn-outline-dark {
   background: transparent;
-  color: var(--clr-dark);
-  border-color: rgba(26,26,26,0.3);
+  color: var(--theme-heading-text);
+  border-color: rgba(128,128,128,0.4);
 }
 .btn-outline-dark:hover {
-  background: var(--clr-dark);
-  color: var(--clr-white);
-  border-color: var(--clr-dark);
+  background: var(--theme-heading-text);
+  color: var(--theme-body-bg);
+  border-color: var(--theme-heading-text);
   transform: translateY(-2px);
 }
 
@@ -680,11 +704,11 @@ body.nav-open .drawer-overlay {
    NEWS SECTION
    ================================================================ */
 .news-section {
-  background: var(--clr-surface);
+  background: var(--theme-section-bg);
 }
 
 .news-section .section-title {
-  color: var(--clr-dark);
+  color: var(--theme-heading-text);
 }
 
 .news-grid {
@@ -700,7 +724,7 @@ body.nav-open .drawer-overlay {
 .news-grid .news-card:nth-child(3) { --delay: 0.2s; }
 
 .news-card {
-  background: var(--clr-white);
+  background: var(--theme-card-bg);
   border-radius: var(--r-md);
   overflow: hidden;
   box-shadow: var(--shadow-card);
@@ -772,7 +796,7 @@ body.nav-open .drawer-overlay {
   font-family: var(--ff-display);
   font-size: 1.1rem;
   line-height: 1.22;
-  color: var(--clr-dark);
+  color: var(--theme-heading-text);
 }
 
 .news-card-title a {
@@ -797,7 +821,7 @@ body.nav-open .drawer-overlay {
 
 .news-excerpt {
   font-size: 0.875rem;
-  color: #4a4a4a;
+  color: var(--theme-excerpt-text);
   line-height: 1.65;
   flex: 1;
 }
@@ -1050,11 +1074,11 @@ body.nav-open .drawer-overlay {
 .split-section {
   display: flex;
   flex-direction: column;
-  background: var(--clr-white);
+  background: var(--theme-section-bg-alt);
 }
 
 .split-section--reverse {
-  background: var(--clr-surface);
+  background: var(--theme-section-bg);
 }
 
 .split-img {
@@ -1095,12 +1119,12 @@ body.nav-open .drawer-overlay {
 }
 
 .split-content .section-title {
-  color: var(--clr-dark);
+  color: var(--theme-heading-text);
 }
 
 .split-content p {
   font-size: 0.95rem;
-  color: #484848;
+  color: var(--theme-body-muted);
   line-height: 1.78;
   max-width: 490px;
 }
@@ -1117,7 +1141,7 @@ body.nav-open .drawer-overlay {
   align-items: center;
   gap: 0.65rem;
   font-size: 0.88rem;
-  color: #484848;
+  color: var(--theme-body-muted);
 }
 
 .split-list li i {
