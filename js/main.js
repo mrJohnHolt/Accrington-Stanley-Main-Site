@@ -1,7 +1,7 @@
 'use strict';
 
 /* ================================================================
-   Theme manager — light / dark / system
+   Theme manager - light / dark / system
    Cycles: light → dark → system → light
    Persists to localStorage. Defaults to 'light'.
    ================================================================ */
@@ -41,7 +41,7 @@
 
 
 /* ================================================================
-   Logo fallback — if img/logo.png fails to load, show ASFC text
+   Logo fallback - if img/logo.png fails to load, show ASFC text
    ================================================================ */
 (function () {
   var img      = document.getElementById('logo-img');
@@ -57,7 +57,7 @@
 
 
 /* ================================================================
-   Sponsor ticker — duplicate list for seamless infinite loop
+   Sponsor ticker - duplicate list for seamless infinite loop
    ================================================================ */
 (function () {
   var track = document.getElementById('sponsors-track');
@@ -71,7 +71,7 @@
 
 
 /* ================================================================
-   Scroll reveal — Intersection Observer
+   Scroll reveal - Intersection Observer
    ================================================================ */
 (function () {
   var reveals = document.querySelectorAll('.reveal');
@@ -107,7 +107,7 @@
 
 
 /* ================================================================
-   Mobile nav drawer — burger toggle
+   Mobile nav drawer - burger toggle
    ================================================================ */
 (function () {
   var burgerBtn = document.getElementById('burger-btn');
@@ -155,7 +155,7 @@
 
 
 /* ================================================================
-   Bottom nav — highlight active section on scroll
+   Bottom nav - highlight active section on scroll
    ================================================================ */
 (function () {
   var navItems = document.querySelectorAll('.bottom-nav-item');
