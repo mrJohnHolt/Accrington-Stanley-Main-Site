@@ -525,9 +525,11 @@ body.nav-open .drawer-overlay {
 
 .drawer-link i {
   width: 1.25rem;
-  color: var(--clr-grey);
-  transition: color var(--t-fast) var(--ease-out);
+  font-size: 1rem;
+  color: var(--clr-red);
+  flex-shrink: 0;
   text-align: center;
+  transition: color var(--t-fast) var(--ease-out);
 }
 
 .drawer-link:hover {
@@ -537,7 +539,7 @@ body.nav-open .drawer-overlay {
 }
 
 .drawer-link:hover i {
-  color: var(--clr-red);
+  color: var(--clr-red-dark);
 }
 
 .drawer-link:focus-visible {
