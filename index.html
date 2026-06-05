@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Accrington Stanley FC — Official website. Tickets, news, fixtures and more from the Wham Stadium.">
+  <title>Accrington Stanley FC | Official Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plh7eecDqYBlnZh5/1oKTjDTIc6jA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ================================================
+       HEADER / NAV
+       ================================================ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+
+      <a href="#home" class="logo" aria-label="Accrington Stanley FC — Home">
+        <img src="img/logo.png" alt="Accrington Stanley FC crest" class="logo-img" id="logo-img" loading="eager" width="44" height="44">
+        <div class="logo-fallback logo-mark" id="logo-fallback" aria-hidden="true">ASFC</div>
+        <div class="logo-text-wrap">
+          <span class="logo-name">Accrington Stanley</span>
+          <span class="logo-sub">Football Club</span>
+        </div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="#home"        class="nav-link">Home</a></li>
+          <li><a href="#news"        class="nav-link">News</a></li>
+          <li><a href="#fixtures"    class="nav-link">Fixtures</a></li>
+          <li><a href="#tickets"     class="nav-link">Tickets</a></li>
+          <li><a href="#commercial"  class="nav-link">Commercial</a></li>
+          <li><a href="#hospitality" class="nav-link">Hospitality</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Switch theme: currently light" title="Switch theme">
+          <i class="fa-solid fa-sun"                theme-icon="light"  aria-hidden="true"></i>
+          <i class="fa-solid fa-moon"               theme-icon="dark"   aria-hidden="true"></i>
+          <i class="fa-solid fa-circle-half-stroke" theme-icon="system" aria-hidden="true"></i>
+        </button>
+        <button class="burger-btn" id="burger-btn"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mobile-drawer">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile drawer -->
+  <nav class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation" aria-hidden="true">
+    <ul>
+      <li><a href="#home"        class="drawer-link"><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a></li>
+      <li><a href="#news"        class="drawer-link"><i class="fa-solid fa-newspaper" aria-hidden="true"></i> News</a></li>
+      <li><a href="#fixtures"    class="drawer-link"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Fixtures</a></li>
+      <li><a href="#tickets"     class="drawer-link"><i class="fa-solid fa-ticket" aria-hidden="true"></i> Tickets</a></li>
+      <li><a href="#commercial"  class="drawer-link"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Commercial</a></li>
+      <li><a href="#hospitality" class="drawer-link"><i class="fa-solid fa-star" aria-hidden="true"></i> Hospitality</a></li>
+    </ul>
+  </nav>
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+
+  <main>
+
+    <!-- ================================================
+         HERO
+         ================================================ -->
+    <section class="hero" id="home" aria-label="Hero">
+      <div class="hero-bg-img" role="img" aria-label="The Wham Stadium, home of Accrington Stanley FC"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <div class="hero-text">
+          <span class="hero-eyebrow">Season 2026/27</span>
+          <h1 class="hero-heading">Welcome to the<br>Wham Stadium</h1>
+          <p class="hero-sub">Home of Accrington Stanley FC — proudly competing in the English Football League.</p>
+          <div class="hero-ctas">
+            <a href="#tickets" class="btn btn-primary">
+              <i class="fa-solid fa-ticket" aria-hidden="true"></i> Get Tickets
+            </a>
+            <a href="#news" class="btn btn-ghost">Latest News</a>
+          </div>
+        </div>
+      </div>
+      <a href="#news" class="scroll-chevron" aria-label="Scroll down to content">
+        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+      </a>
+    </section>
+
+    <!-- ================================================
+         NEWS
+         ================================================ -->
+    <section class="section news-section" id="news">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Club News</span>
+          <h2 class="section-title">Latest News</h2>
+        </div>
+
+        <div class="news-grid">
+
+          <article class="news-card reveal">
+            <a href="#" class="news-card-img-link" tabindex="-1" aria-hidden="true">
+              <div class="news-card-img-wrap">
+                <img src="https://source.unsplash.com/800x500/?football,match"
+                     alt="Stanley players celebrating a goal"
+                     class="news-card-img"
+                     loading="lazy"
+                     width="800" height="500">
+              </div>
+            </a>
+            <div class="news-card-body">
+              <span class="news-pill">Match Report</span>
+              <h3 class="news-card-title">
+                <a href="#">Stanley Claim Vital Three Points in Midweek Clash</a>
+              </h3>
+              <time class="news-date" datetime="2026-06-03">3 June 2026</time>
+              <p class="news-excerpt">A first-half strike from leading marksman Tom Sheridan secured all three points for the Reds in a hard-fought home victory at the Wham Stadium.</p>
+              <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+
+          <article class="news-card reveal">
+            <a href="#" class="news-card-img-link" tabindex="-1" aria-hidden="true">
+              <div class="news-card-img-wrap">
+                <img src="https://source.unsplash.com/800x500/?football,players"
+                     alt="New Accrington Stanley signings"
+                     class="news-card-img"
+                     loading="lazy"
+                     width="800" height="500">
+              </div>
+            </a>
+            <div class="news-card-body">
+              <span class="news-pill news-pill--navy">Club News</span>
+              <h3 class="news-card-title">
+                <a href="#">Club Announces Three Summer Signings Ahead of 2026/27</a>
+              </h3>
+              <time class="news-date" datetime="2026-06-01">1 June 2026</time>
+              <p class="news-excerpt">Accrington Stanley FC is delighted to confirm the additions of three quality signings as the club builds for an exciting new campaign.</p>
+              <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+
+          <article class="news-card reveal">
+            <a href="#" class="news-card-img-link" tabindex="-1" aria-hidden="true">
+              <div class="news-card-img-wrap">
+                <img src="https://source.unsplash.com/800x500/?football,crowd"
+                     alt="Accrington Stanley fans at the Wham Stadium"
+                     class="news-card-img"
+                     loading="lazy"
+                     width="800" height="500">
+              </div>
+            </a>
+            <div class="news-card-body">
+              <span class="news-pill news-pill--green">Community</span>
+              <h3 class="news-card-title">
+                <a href="#">Stanley Foundation Launches Summer Holiday Camps</a>
+              </h3>
+              <time class="news-date" datetime="2026-05-28">28 May 2026</time>
+              <p class="news-excerpt">The Stanley Foundation has announced a packed schedule of free and subsidised football camps for young fans across the Hyndburn borough this summer.</p>
+              <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+
+        </div><!-- /news-grid -->
+
+        <div class="news-footer reveal">
+          <a href="#" class="btn btn-outline-dark">
+            All News <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================
+         SEASON TICKET CTA
+         ================================================ -->
+    <section class="section tickets-cta" id="tickets">
+      <div class="container tickets-inner reveal">
+
+        <div class="tickets-text">
+          <span class="tickets-eyebrow">2026 / 27 Season</span>
+          <h2 class="tickets-heading">Season Tickets<br>On Sale Now</h2>
+          <p class="tickets-body">Join the Reds for every home game next season. Lock in your seat, save on matchday prices, and be part of something special at the Wham Stadium.</p>
+          <ul class="tickets-perks" aria-label="Season ticket benefits">
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Priority seat selection</li>
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Exclusive member offers &amp; discounts</li>
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Interest-free payment plans available</li>
+          </ul>
+          <a href="#" class="btn btn-inverse">
+            <i class="fa-solid fa-ticket" aria-hidden="true"></i> Buy Your Season Ticket
+          </a>
+        </div>
+
+        <div class="tickets-badge" aria-hidden="true">
+          <span class="badge-year">2026<br>/27</span>
+          <span class="badge-label">Season<br>Tickets</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================
+         FIXTURES
+         ================================================ -->
+    <section class="section fixtures-section" id="fixtures">
+      <div class="container">
+
+        <div class="section-header section-header--light reveal">
+          <span class="section-label">Schedule</span>
+          <h2 class="section-title section-title--light">Upcoming Fixtures</h2>
+        </div>
+
+        <div class="fixtures-list" role="list">
+
+          <div class="fixture-row reveal" role="listitem">
+            <div class="fixture-date" aria-label="14 June">
+              <span class="fixture-day">14</span>
+              <span class="fixture-month">Jun</span>
+            </div>
+            <div class="fixture-teams">
+              <span class="fixture-home">Accrington Stanley</span>
+              <span class="fixture-vs" aria-hidden="true">vs</span>
+              <span class="fixture-away">Bradford City</span>
+            </div>
+            <div class="fixture-meta">
+              <span class="fixture-comp">EFL League One</span>
+              <span class="fixture-ko"><i class="fa-regular fa-clock" aria-hidden="true"></i> 15:00</span>
+            </div>
+            <a href="#" class="btn btn-sm btn-primary">Tickets</a>
+          </div>
+
+          <div class="fixture-row reveal" role="listitem">
+            <div class="fixture-date" aria-label="21 June">
+              <span class="fixture-day">21</span>
+              <span class="fixture-month">Jun</span>
+            </div>
+            <div class="fixture-teams">
+              <span class="fixture-home">Exeter City</span>
+              <span class="fixture-vs" aria-hidden="true">vs</span>
+              <span class="fixture-away">Accrington Stanley</span>
+            </div>
+            <div class="fixture-meta">
+              <span class="fixture-comp">EFL League One</span>
+              <span class="fixture-ko"><i class="fa-regular fa-clock" aria-hidden="true"></i> 15:00</span>
+            </div>
+            <a href="#" class="btn btn-sm btn-ghost-dark">Info</a>
+          </div>
+
+          <div class="fixture-row reveal" role="listitem">
+            <div class="fixture-date" aria-label="28 June">
+              <span class="fixture-day">28</span>
+              <span class="fixture-month">Jun</span>
+            </div>
+            <div class="fixture-teams">
+              <span class="fixture-home">Accrington Stanley</span>
+              <span class="fixture-vs" aria-hidden="true">vs</span>
+              <span class="fixture-away">Shrewsbury Town</span>
+            </div>
+            <div class="fixture-meta">
+              <span class="fixture-comp">EFL Trophy</span>
+              <span class="fixture-ko"><i class="fa-regular fa-clock" aria-hidden="true"></i> 19:45</span>
+            </div>
+            <a href="#" class="btn btn-sm btn-primary">Tickets</a>
+          </div>
+
+        </div><!-- /fixtures-list -->
+
+        <div class="fixtures-footer reveal">
+          <a href="#" class="btn btn-ghost-dark">
+            Full Fixture List <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================
+         COMMERCIAL
+         ================================================ -->
+    <section class="split-section" id="commercial">
+
+      <div class="split-img reveal">
+        <img src="https://source.unsplash.com/900x600/?stadium,corporate"
+             alt="The Wham Stadium — commercial opportunities"
+             class="split-photo"
+             loading="lazy"
+             width="900" height="600">
+        <div class="split-photo-overlay" aria-hidden="true"></div>
+      </div>
+
+      <div class="split-content reveal">
+        <span class="section-label">Business</span>
+        <h2 class="section-title">Commercial<br>Opportunities</h2>
+        <p>Partner with Accrington Stanley and connect your brand with thousands of passionate supporters across the Hyndburn community and beyond. Our commercial packages offer outstanding value and unmatched local reach.</p>
+        <ul class="split-list">
+          <li><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Kit and shirt sponsorship</li>
+          <li><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Perimeter board advertising</li>
+          <li><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Matchday programme placement</li>
+          <li><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Digital and social campaigns</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Find Out More</a>
+      </div>
+
+    </section>
+
+    <!-- ================================================
+         HOSPITALITY
+         ================================================ -->
+    <section class="split-section split-section--reverse" id="hospitality">
+
+      <div class="split-content reveal">
+        <span class="section-label">Experience</span>
+        <h2 class="section-title">Hospitality<br>&amp; Events</h2>
+        <p>Elevate your matchday with our premium hospitality packages. Whether it's a corporate event, a birthday celebration, or simply treating friends to something special — the Wham Stadium delivers an unforgettable experience.</p>
+        <ul class="split-list">
+          <li><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Executive suite hire</li>
+          <li><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Matchday dining packages</li>
+          <li><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Pre-match drinks reception</li>
+          <li><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Bespoke event planning</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Enquire Now</a>
+      </div>
+
+      <div class="split-img reveal">
+        <img src="https://source.unsplash.com/900x600/?stadium,crowd"
+             alt="Fans enjoying a matchday experience at the Wham Stadium"
+             class="split-photo"
+             loading="lazy"
+             width="900" height="600">
+        <div class="split-photo-overlay" aria-hidden="true"></div>
+      </div>
+
+    </section>
+
+    <!-- ================================================
+         SPONSOR TICKER
+         ================================================ -->
+    <section class="sponsors-section" aria-label="Club sponsors">
+      <p class="sponsors-label">Our Partners</p>
+      <div class="sponsors-track-wrap">
+        <ul class="sponsors-track" id="sponsors-track" aria-label="Scrolling sponsor list">
+          <li class="sponsor-item"><span>Macron</span></li>
+          <li class="sponsor-item"><span>Wham</span></li>
+          <li class="sponsor-item"><span>Betfred</span></li>
+          <li class="sponsor-item"><span>Stanley Travel</span></li>
+          <li class="sponsor-item"><span>Hyndburn Council</span></li>
+          <li class="sponsor-item"><span>Pure Gym</span></li>
+          <li class="sponsor-item"><span>Accrington Victoria</span></li>
+          <li class="sponsor-item"><span>EFL</span></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================================================
+       FOOTER
+       ================================================ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+
+      <div class="footer-col footer-col--brand">
+        <div class="footer-logo-mark" aria-label="ASFC">ASFC</div>
+        <p class="footer-tagline">
+          Accrington Stanley FC<br>
+          The Wham Stadium<br>
+          Livingstone Road, Accrington<br>
+          Lancashire, BB5 5BX
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-heading">Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#fixtures">Fixtures &amp; Results</a></li>
+          <li><a href="#tickets">Season Tickets</a></li>
+          <li><a href="#commercial">Commercial</a></li>
+          <li><a href="#hospitality">Hospitality</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-heading">Follow the Reds</h3>
+        <div class="social-links" role="list">
+          <a href="#" class="social-link" aria-label="Accrington Stanley on Twitter / X" role="listitem">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Accrington Stanley on Facebook" role="listitem">
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Accrington Stanley on Instagram" role="listitem">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Accrington Stanley on YouTube" role="listitem">
+            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+          </a>
+        </div>
+        <address class="footer-contact">
+          General Enquiries:<br>
+          <a href="mailto:info@accringtonstanley.co.uk">info@accringtonstanley.co.uk</a>
+        </address>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Accrington Stanley FC. All rights reserved.</p>
+        <nav aria-label="Footer legal links">
+          <a href="#">Privacy Policy</a>
+          <span aria-hidden="true">&middot;</span>
+          <a href="#">Terms of Use</a>
+          <span aria-hidden="true">&middot;</span>
+          <a href="#">Cookie Policy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================
+       BOTTOM NAV (mobile only)
+       ================================================ -->
+  <nav class="bottom-nav" aria-label="Mobile bottom navigation">
+    <a href="#home"     class="bottom-nav-item" aria-label="Home">
+      <i class="fa-solid fa-house" aria-hidden="true"></i>
+      <span>Home</span>
+    </a>
+    <a href="#news"     class="bottom-nav-item" aria-label="News">
+      <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
+      <span>News</span>
+    </a>
+    <a href="#fixtures" class="bottom-nav-item" aria-label="Fixtures">
+      <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+      <span>Fixtures</span>
+    </a>
+    <a href="#tickets"  class="bottom-nav-item" aria-label="Tickets">
+      <i class="fa-solid fa-ticket" aria-hidden="true"></i>
+      <span>Tickets</span>
+    </a>
+    <a href="#hospitality" class="bottom-nav-item" aria-label="More">
+      <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>
+      <span>More</span>
+    </a>
+  </nav>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "accrington-stanley-main-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrJohnHolt/Accrington-Stanley-Main-Site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrJohnHolt/Accrington-Stanley-Main-Site/issues"
+  },
+  "homepage": "https://github.com/mrJohnHolt/Accrington-Stanley-Main-Site#readme",
+  "devDependencies": {
+    "puppeteer-core": "^25.1.0"
+  }
+}
