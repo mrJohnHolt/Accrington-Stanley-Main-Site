@@ -358,6 +358,7 @@
   function easeInOutQuad(t) { return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
 
   btn.addEventListener('mouseenter', function (e) {
+    if (Math.random() > 0.2) return; /* ~1-in-5 chance — keeps it a surprise */
     if (rafId)  { cancelAnimationFrame(rafId); rafId = null; }
     if (fadeId) { clearTimeout(fadeId);        fadeId = null; }
 
