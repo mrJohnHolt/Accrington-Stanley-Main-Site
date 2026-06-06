@@ -57,16 +57,18 @@
 
 
 /* ================================================================
-   Sponsor ticker - duplicate list for seamless infinite loop
+   Sponsor ticker - duplicate items within the same list for a
+   seamless infinite loop. Animation moves -50% = one full set.
    ================================================================ */
 (function () {
   var track = document.getElementById('sponsors-track');
   if (!track) return;
 
-  var clone = track.cloneNode(true);
-  clone.setAttribute('aria-hidden', 'true');
-  clone.removeAttribute('id');
-  track.parentElement.appendChild(clone);
+  Array.from(track.children).forEach(function (item) {
+    var clone = item.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  });
 })();
 
 
