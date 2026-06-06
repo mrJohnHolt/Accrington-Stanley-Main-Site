@@ -265,25 +265,102 @@
          SEASON TICKET CTA
          ================================================ -->
     <section class="section tickets-cta" id="tickets">
-      <div class="container tickets-inner reveal">
+      <div class="container reveal">
 
-        <div class="tickets-text">
-          <span class="tickets-eyebrow">2026 / 27 Season</span>
-          <h2 class="tickets-heading">Season Tickets<br>On Sale Now</h2>
-          <p class="tickets-body">Join the Reds for every home game next season. Lock in your seat, save on matchday prices, and be part of something special at the Wham Stadium.</p>
-          <ul class="tickets-perks" aria-label="Season ticket benefits">
-            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Priority seat selection</li>
-            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Exclusive member offers &amp; discounts</li>
-            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Interest-free payment plans available</li>
-          </ul>
-          <a href="#" class="btn btn-inverse">
-            <i class="fa-solid fa-ticket" aria-hidden="true"></i> Buy Your Season Ticket
-          </a>
+        <div class="tickets-slides">
+
+          <!-- Slide 1: Season Tickets -->
+          <div class="tickets-slide is-active">
+            <div class="tickets-text">
+              <span class="tickets-eyebrow">2026 / 27 Season</span>
+              <h2 class="tickets-heading">Season Tickets<br>On Sale Now</h2>
+              <p class="tickets-body">Join the Reds for every home game next season. Lock in your seat, save on matchday prices, and be part of something special at the Wham Stadium.</p>
+              <ul class="tickets-perks" aria-label="Season ticket benefits">
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Priority seat selection</li>
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Exclusive member offers &amp; discounts</li>
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Interest-free payment plans available</li>
+              </ul>
+              <a href="#" class="btn btn-inverse">
+                <i class="fa-solid fa-ticket" aria-hidden="true"></i> Buy Your Season Ticket
+              </a>
+            </div>
+            <div class="tickets-badge" aria-hidden="true">
+              <span class="badge-year">2026/27</span>
+              <span class="badge-label">Season<br>Tickets</span>
+            </div>
+          </div>
+
+          <!-- Slide 2: Home Tickets -->
+          <div class="tickets-slide">
+            <div class="tickets-text">
+              <span class="tickets-eyebrow">Matchday</span>
+              <h2 class="tickets-heading">Home Match<br>Tickets</h2>
+              <p class="tickets-body">Pick your games. Pay-as-you-go matchday tickets are available online in advance and on the gate at the Wham Stadium on match days.</p>
+              <ul class="tickets-perks" aria-label="Home ticket benefits">
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Buy online or on the gate</li>
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Family stand available</li>
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Concessions for under-16s &amp; over-65s</li>
+              </ul>
+              <a href="#" class="btn btn-inverse">
+                <i class="fa-solid fa-ticket" aria-hidden="true"></i> Buy Home Tickets
+              </a>
+            </div>
+            <div class="tickets-badge" aria-hidden="true">
+              <span class="badge-year">Home</span>
+              <span class="badge-label">Match<br>Tickets</span>
+            </div>
+          </div>
+
+          <!-- Slide 3: Away Tickets -->
+          <div class="tickets-slide">
+            <div class="tickets-text">
+              <span class="tickets-eyebrow">On The Road</span>
+              <h2 class="tickets-heading">Away<br>Tickets</h2>
+              <p class="tickets-body">Follow the Reds wherever they go. Away tickets are available through the club, subject to allocation from the host club.</p>
+              <ul class="tickets-perks" aria-label="Away ticket benefits">
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Sold via ASFC ticket office</li>
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Supporter coach travel available</li>
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Members' priority booking window</li>
+              </ul>
+              <a href="#" class="btn btn-inverse">
+                <i class="fa-solid fa-ticket" aria-hidden="true"></i> Buy Away Tickets
+              </a>
+            </div>
+            <div class="tickets-badge" aria-hidden="true">
+              <span class="badge-year">Away</span>
+              <span class="badge-label">Match<br>Tickets</span>
+            </div>
+          </div>
+
+          <!-- Slide 4: Events & Hospitality -->
+          <div class="tickets-slide">
+            <div class="tickets-text">
+              <span class="tickets-eyebrow">Events &amp; Hospitality</span>
+              <h2 class="tickets-heading">Events &amp;<br>Hospitality</h2>
+              <p class="tickets-body">From club dinners to private hospitality packages, the Wham Stadium is a brilliant venue. Book your place at an upcoming event.</p>
+              <ul class="tickets-perks" aria-label="Events benefits">
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Corporate hospitality packages</li>
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Private hire available</li>
+                <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Club dinners &amp; awards nights</li>
+              </ul>
+              <a href="#" class="btn btn-inverse">
+                <i class="fa-solid fa-calendar" aria-hidden="true"></i> View Events
+              </a>
+            </div>
+            <div class="tickets-badge" aria-hidden="true">
+              <span class="badge-year">Events</span>
+              <span class="badge-label">Wham<br>Stadium</span>
+            </div>
+          </div>
+
         </div>
 
-        <div class="tickets-badge" aria-hidden="true">
-          <span class="badge-year">2026/27</span>
-          <span class="badge-label">Season<br>Tickets</span>
+        <!-- Dot indicators -->
+        <div class="tickets-dots" role="tablist" aria-label="Ticket categories">
+          <button class="tickets-dot is-active" aria-label="Season tickets" aria-selected="true"></button>
+          <button class="tickets-dot" aria-label="Home tickets" aria-selected="false"></button>
+          <button class="tickets-dot" aria-label="Away tickets" aria-selected="false"></button>
+          <button class="tickets-dot" aria-label="Events" aria-selected="false"></button>
         </div>
 
       </div>

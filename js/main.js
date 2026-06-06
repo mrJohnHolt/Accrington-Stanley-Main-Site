@@ -478,3 +478,37 @@
     });
   });
 })();
+
+// Tickets carousel
+(function () {
+  var slides = document.querySelectorAll('.tickets-slide');
+  var dots   = document.querySelectorAll('.tickets-dot');
+  if (!slides.length) return;
+
+  var current = 0;
+  var timer;
+
+  function goTo(index) {
+    slides[current].classList.remove('is-active');
+    dots[current].classList.remove('is-active');
+    dots[current].setAttribute('aria-selected', 'false');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('is-active');
+    dots[current].classList.add('is-active');
+    dots[current].setAttribute('aria-selected', 'true');
+  }
+
+  function start() {
+    timer = setInterval(function () { goTo(current + 1); }, 6000);
+  }
+
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () {
+      clearInterval(timer);
+      goTo(i);
+      start();
+    });
+  });
+
+  start();
+})();

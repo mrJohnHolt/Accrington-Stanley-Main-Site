@@ -871,11 +871,26 @@ body.nav-open .drawer-overlay {
   padding-block: var(--sp-xl);
 }
 
-.tickets-inner {
+.tickets-slides {
+  display: grid;
+  width: 100%;
+}
+
+.tickets-slide {
+  grid-column: 1;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   gap: var(--sp-lg);
   align-items: flex-start;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  pointer-events: none;
+}
+
+.tickets-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .tickets-eyebrow {
@@ -967,6 +982,30 @@ body.nav-open .drawer-overlay {
   color: rgba(255,255,255,0.6);
   margin-top: 0.35rem;
   line-height: 1.3;
+}
+
+/* Carousel dots */
+.tickets-dots {
+  display: flex;
+  gap: 0.55rem;
+  justify-content: center;
+  margin-top: var(--sp-md);
+}
+
+.tickets-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  border: 2px solid rgba(255,255,255,0.5);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.tickets-dot.is-active {
+  background: var(--clr-white);
+  transform: scale(1.25);
 }
 
 
@@ -1653,7 +1692,7 @@ body.nav-open .drawer-overlay {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .tickets-inner {
+  .tickets-slide {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
