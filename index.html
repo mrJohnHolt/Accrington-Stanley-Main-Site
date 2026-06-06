@@ -99,6 +99,43 @@
           </div>
         </div>
       </div>
+      <!-- Countdown — desktop only, hidden via CSS on mobile -->
+      <div class="hero-countdown" id="hero-countdown" aria-label="Countdown to next match">
+        <span class="countdown-eyebrow">Next Match</span>
+        <p class="countdown-opponent">Blackburn Rovers</p>
+        <p class="countdown-detail">
+          <i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Sat 11 Jul
+          <span aria-hidden="true">&middot;</span>
+          <i class="fa-regular fa-clock" aria-hidden="true"></i> 15:00
+        </p>
+        <p class="countdown-venue">Wham Stadium &middot; Home</p>
+        <div class="countdown-divider" aria-hidden="true"></div>
+        <div class="countdown-timer" role="timer" aria-live="off">
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-days">00</span>
+            <span class="countdown-unit-label">Days</span>
+          </div>
+          <span class="countdown-sep" aria-hidden="true">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-hours">00</span>
+            <span class="countdown-unit-label">Hrs</span>
+          </div>
+          <span class="countdown-sep" aria-hidden="true">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-mins">00</span>
+            <span class="countdown-unit-label">Mins</span>
+          </div>
+          <span class="countdown-sep" aria-hidden="true">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-secs">00</span>
+            <span class="countdown-unit-label">Secs</span>
+          </div>
+        </div>
+        <a href="#tickets" class="btn btn-primary btn-sm countdown-cta">
+          <i class="fa-solid fa-ticket" aria-hidden="true"></i> Get Tickets
+        </a>
+      </div>
+
       <a href="#news" class="scroll-chevron" aria-label="Scroll down to content">
         <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
       </a>
@@ -448,7 +485,7 @@
     <div class="container footer-grid">
 
       <div class="footer-col footer-col--brand">
-        <div class="footer-logo-mark" aria-label="ASFC">ASFC</div>
+        <img src="img/logo.png" alt="Accrington Stanley FC" class="footer-logo-img" width="64" height="64">
         <p class="footer-tagline">
           Accrington Stanley FC<br>
           The Wham Stadium<br>
@@ -458,9 +495,7 @@
       </div>
 
       <div class="footer-col">
-        <h3 class="footer-heading">Quick Links</h3>
         <ul class="footer-links">
-          <li><a href="#home">Home</a></li>
           <li><a href="#news">News</a></li>
           <li><a href="#fixtures">Fixtures &amp; Results</a></li>
           <li><a href="#tickets">Season Tickets</a></li>
@@ -473,23 +508,25 @@
       <div class="footer-col">
         <h3 class="footer-heading">Follow the Reds</h3>
         <div class="social-links" role="list">
-          <a href="#" class="social-link" aria-label="Accrington Stanley on Twitter / X" role="listitem">
-            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-          </a>
           <a href="#" class="social-link" aria-label="Accrington Stanley on Facebook" role="listitem">
             <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
           </a>
           <a href="#" class="social-link" aria-label="Accrington Stanley on Instagram" role="listitem">
             <i class="fa-brands fa-instagram" aria-hidden="true"></i>
           </a>
+          <a href="#" class="social-link" aria-label="Accrington Stanley on LinkedIn" role="listitem">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Accrington Stanley on TikTok" role="listitem">
+            <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Accrington Stanley on Twitter / X" role="listitem">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>
           <a href="#" class="social-link" aria-label="Accrington Stanley on YouTube" role="listitem">
             <i class="fa-brands fa-youtube" aria-hidden="true"></i>
           </a>
         </div>
-        <address class="footer-contact">
-          General Enquiries:<br>
-          <a href="mailto:info@accringtonstanley.co.uk">info@accringtonstanley.co.uk</a>
-        </address>
       </div>
 
     </div>
@@ -498,11 +535,11 @@
       <div class="container footer-bottom-inner">
         <p>&copy; 2026 Accrington Stanley FC. All rights reserved.</p>
         <nav aria-label="Footer legal links">
-          <a href="#">Privacy Policy</a>
-          <span aria-hidden="true">&middot;</span>
           <a href="#">Terms of Use</a>
-          <span aria-hidden="true">&middot;</span>
-          <a href="#">Cookie Policy</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Accessibility</a>
+          <a href="#">Company Details</a>
+          <a href="#">Contact Us</a>
         </nav>
       </div>
     </div>

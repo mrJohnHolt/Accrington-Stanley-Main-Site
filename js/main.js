@@ -194,6 +194,41 @@
 
 
 /* ================================================================
+   Hero countdown timer — desktop only widget
+   Target: Blackburn Rovers, Sat 11 Jul 2026, 15:00 (BST = UTC+1)
+   ================================================================ */
+(function () {
+  var elDays  = document.getElementById('cd-days');
+  var elHours = document.getElementById('cd-hours');
+  var elMins  = document.getElementById('cd-mins');
+  var elSecs  = document.getElementById('cd-secs');
+
+  if (!elDays) return;
+
+  var target = new Date('2026-07-11T14:00:00Z'); /* 15:00 BST */
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    var diff = target - Date.now();
+
+    if (diff <= 0) {
+      elDays.textContent = elHours.textContent = elMins.textContent = elSecs.textContent = '00';
+      return;
+    }
+
+    elDays.textContent  = pad(Math.floor(diff / 86400000));
+    elHours.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+    elMins.textContent  = pad(Math.floor((diff % 3600000)  / 60000));
+    elSecs.textContent  = pad(Math.floor((diff % 60000)    / 1000));
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+
+
+/* ================================================================
    Smooth scroll polyfill for anchor links (Safari fallback)
    ================================================================ */
 (function () {
