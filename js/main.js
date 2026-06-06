@@ -229,6 +229,68 @@
 
 
 /* ================================================================
+   Hero mouse-move parallax — desktop only
+   Pauses the CSS hero-drift animation while the mouse is over the
+   hero, drives the bg-image transform directly, then restores the
+   animation on mouseleave for a smooth handoff.
+   ================================================================ */
+(function () {
+  if (window.innerWidth < 1024) return;
+
+  var hero  = document.querySelector('.hero');
+  var bgImg = document.querySelector('.hero-bg-img');
+  if (!hero || !bgImg) return;
+
+  var rafId   = null;
+  var targetX = 0;
+  var targetY = 0;
+  var currentX = 0;
+  var currentY = 0;
+  var active  = false;
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function animate() {
+    currentX = lerp(currentX, targetX, 0.06);
+    currentY = lerp(currentY, targetY, 0.06);
+    bgImg.style.transform = 'scale(1.07) translate(' + currentX + 'px, ' + currentY + 'px)';
+    rafId = requestAnimationFrame(animate);
+  }
+
+  hero.addEventListener('mouseenter', function () {
+    if (window.innerWidth < 1024) return;
+    active = true;
+    bgImg.style.animation = 'none'; /* remove so inline transform takes precedence */
+    if (!rafId) rafId = requestAnimationFrame(animate);
+  });
+
+  hero.addEventListener('mousemove', function (e) {
+    if (!active) return;
+    var rect   = hero.getBoundingClientRect();
+    var normX  = (e.clientX - rect.left)  / rect.width  - 0.5; /* -0.5 → 0.5 */
+    var normY  = (e.clientY - rect.top)   / rect.height - 0.5;
+    targetX = -normX * 18; /* invert: move opposite to cursor */
+    targetY = -normY * 10;
+  });
+
+  hero.addEventListener('mouseleave', function () {
+    active  = false;
+    targetX = 0;
+    targetY = 0;
+    /* Wait for lerp to settle near zero, then restore CSS animation */
+    setTimeout(function () {
+      if (!active) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+        bgImg.style.transform = '';
+        bgImg.style.animation = ''; /* restore CSS animation */
+      }
+    }, 700);
+  });
+})();
+
+
+/* ================================================================
    Smooth scroll polyfill for anchor links (Safari fallback)
    ================================================================ */
 (function () {
