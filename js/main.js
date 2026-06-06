@@ -512,3 +512,55 @@
 
   start();
 })();
+
+// Per-fixture countdown timers
+(function () {
+  var rows = document.querySelectorAll('.fixture-row[data-target]');
+  if (!rows.length) return;
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  rows.forEach(function (row) {
+    var target = new Date(row.dataset.target);
+    var cd = document.createElement('div');
+    cd.className = 'fixture-countdown';
+    cd.setAttribute('aria-hidden', 'true');
+
+    var keys   = ['days', 'hrs',  'mins', 'secs'];
+    var labels = ['Days', 'Hrs',  'Mins', 'Secs'];
+    var spans  = {};
+
+    keys.forEach(function (k, i) {
+      var unit = document.createElement('div');
+      unit.className = 'fc-unit';
+      var num = document.createElement('span');
+      num.className = 'fc-num';
+      num.textContent = '00';
+      var lbl = document.createElement('span');
+      lbl.className = 'fc-label';
+      lbl.textContent = labels[i];
+      unit.appendChild(num);
+      unit.appendChild(lbl);
+      cd.appendChild(unit);
+      spans[k] = num;
+    });
+
+    var btn = row.querySelector('.btn');
+    row.insertBefore(cd, btn);
+
+    function tick() {
+      var diff = target - Date.now();
+      if (diff <= 0) {
+        spans.days.textContent = spans.hrs.textContent = spans.mins.textContent = spans.secs.textContent = '00';
+        return;
+      }
+      spans.days.textContent = pad(Math.floor(diff / 86400000));
+      spans.hrs.textContent  = pad(Math.floor((diff % 86400000) / 3600000));
+      spans.mins.textContent = pad(Math.floor((diff % 3600000)  / 60000));
+      spans.secs.textContent = pad(Math.floor((diff % 60000)    / 1000));
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  });
+})();

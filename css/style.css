@@ -1238,6 +1238,34 @@ body.nav-open .drawer-overlay {
   gap: var(--sp-sm);
 }
 
+/* Fixture per-card countdown — desktop only */
+.fixture-countdown {
+  display: none;
+}
+
+.fc-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 32px;
+}
+
+.fc-num {
+  font-family: var(--ff-display);
+  font-size: 1.35rem;
+  color: var(--clr-white);
+  line-height: 1;
+}
+
+.fc-label {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-grey);
+  margin-top: 0.2rem;
+}
+
 
 /* ================================================================
    SPLIT SECTIONS (Commercial & Hospitality)
@@ -1886,6 +1914,21 @@ body.nav-open .drawer-overlay {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .fixture-row {
+    grid-template-columns: 64px 1fr auto auto;
+    column-gap: var(--sp-xl);
+    padding-inline: var(--sp-xl);
+  }
+
+  .fixture-countdown {
+    display: flex;
+    gap: 0.6rem;
+    grid-column: 3;
+    grid-row: 1 / 3;
+    align-self: center;
+    justify-self: center;
+  }
+
   .events-cta {
     display: block;
   }
@@ -2097,6 +2140,16 @@ body.nav-open .drawer-overlay {
 
   .footer-grid {
     grid-template-columns: 1.4fr 1fr 1fr;
+    align-items: stretch;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-heading {
+    margin-top: auto;
   }
 
   .footer-bottom-inner {
