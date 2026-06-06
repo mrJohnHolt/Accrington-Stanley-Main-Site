@@ -1848,6 +1848,47 @@ body.nav-open .drawer-overlay {
     margin-top: 0.15rem;
   }
 
+  /* Fixture picker inside countdown widget */
+  .countdown-picker {
+    display: flex;
+    gap: 0.35rem;
+    width: 100%;
+    margin-bottom: 0.2rem;
+  }
+
+  .cp-btn {
+    flex: 1;
+    padding: 0.22rem 0.4rem;
+    font-family: var(--ff-body);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--r-sm);
+    cursor: pointer;
+    transition:
+      background var(--t-fast) var(--ease-out),
+      color      var(--t-fast) var(--ease-out);
+  }
+
+  .cp-btn:hover {
+    background: rgba(255,255,255,0.14);
+    color: var(--clr-white);
+  }
+
+  .cp-btn.active {
+    background: var(--clr-red);
+    color: var(--clr-white);
+    border-color: var(--clr-red);
+  }
+
+  .cp-btn:focus-visible {
+    outline: 2px solid var(--clr-red);
+    outline-offset: 2px;
+  }
+
   .footer-grid {
     grid-template-columns: 1.4fr 1fr 1fr;
   }

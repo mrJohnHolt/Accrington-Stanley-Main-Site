@@ -195,32 +195,77 @@
 
 /* ================================================================
    Hero countdown timer — desktop only widget
-   Target: Blackburn Rovers, Sat 11 Jul 2026, 15:00 (BST = UTC+1)
+   Reads fixture data from .fixture-row[data-target] elements so
+   the picker stays in sync with the upcoming fixtures section.
    ================================================================ */
 (function () {
-  var elDays  = document.getElementById('cd-days');
-  var elHours = document.getElementById('cd-hours');
-  var elMins  = document.getElementById('cd-mins');
-  var elSecs  = document.getElementById('cd-secs');
+  var elDays     = document.getElementById('cd-days');
+  var elHours    = document.getElementById('cd-hours');
+  var elMins     = document.getElementById('cd-mins');
+  var elSecs     = document.getElementById('cd-secs');
+  var elOpponent = document.querySelector('.countdown-opponent');
+  var elDate     = document.getElementById('cd-detail-date');
+  var elTime     = document.getElementById('cd-detail-time');
+  var elVenue    = document.querySelector('.countdown-venue');
+  var pickerEl   = document.querySelector('.countdown-picker');
 
   if (!elDays) return;
 
-  var target = new Date('2026-07-11T14:00:00Z'); /* 15:00 BST */
+  var fixtureRows = Array.from(document.querySelectorAll('.fixture-row[data-target]'));
+  if (!fixtureRows.length) return;
+
+  var target = new Date(fixtureRows[0].dataset.target);
 
   function pad(n) { return String(n).padStart(2, '0'); }
 
+  function fmtDate(d) {
+    return d.toLocaleDateString('en-GB', {
+      weekday: 'short', day: 'numeric', month: 'short', timeZone: 'Europe/London'
+    });
+  }
+
+  function fmtTime(d) {
+    return d.toLocaleTimeString('en-GB', {
+      hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London'
+    });
+  }
+
   function tick() {
     var diff = target - Date.now();
-
     if (diff <= 0) {
       elDays.textContent = elHours.textContent = elMins.textContent = elSecs.textContent = '00';
       return;
     }
-
     elDays.textContent  = pad(Math.floor(diff / 86400000));
     elHours.textContent = pad(Math.floor((diff % 86400000) / 3600000));
     elMins.textContent  = pad(Math.floor((diff % 3600000)  / 60000));
     elSecs.textContent  = pad(Math.floor((diff % 60000)    / 1000));
+  }
+
+  /* Build picker buttons dynamically from fixture rows */
+  if (pickerEl) {
+    var buttons = [];
+    fixtureRows.forEach(function (row, i) {
+      var name = row.querySelector('.fixture-home').textContent.trim();
+      var btn  = document.createElement('button');
+      btn.className = 'cp-btn' + (i === 0 ? ' active' : '');
+      btn.textContent = name.slice(0, 3).toUpperCase();
+      btn.setAttribute('aria-label', 'Countdown to ' + name);
+
+      btn.addEventListener('click', function () {
+        target = new Date(row.dataset.target);
+        if (elOpponent) elOpponent.textContent = name;
+        if (elDate)     elDate.textContent     = fmtDate(target);
+        if (elTime)     elTime.textContent     = fmtTime(target);
+        if (elVenue)    elVenue.textContent    = row.dataset.venue || '';
+        buttons.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        tick();
+      });
+
+      pickerEl.appendChild(btn);
+      buttons.push(btn);
+    });
   }
 
   tick();
