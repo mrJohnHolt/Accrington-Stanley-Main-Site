@@ -1531,6 +1531,12 @@ body.nav-open .drawer-overlay {
 
 
 /* ================================================================
+   GOAL EASTER EGG — hidden on mobile, desktop only
+   ================================================================ */
+.goal-egg { display: none; }
+
+
+/* ================================================================
    LOGO IMAGE
    ================================================================ */
 .logo-img {
@@ -1898,4 +1904,98 @@ body.nav-open .drawer-overlay {
     justify-content: space-between;
     text-align: left;
   }
+
+  /* ---- Goal Easter Egg ---- */
+  .goal-egg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+    overflow: hidden;
+  }
+
+  .goal-egg__ball {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 2.4rem;
+    line-height: 1;
+    opacity: 0;
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  .goal-egg__net {
+    position: absolute;
+    right: 4%;
+    bottom: 12%;
+    width: 110px;
+    height: 80px;
+    opacity: 0;
+    transition: opacity 0.2s var(--ease-out);
+  }
+
+  .goal-egg__post {
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    background: var(--clr-white);
+    bottom: 0;
+    border-radius: 2px;
+  }
+
+  .goal-egg__post--l { left: 0; }
+  .goal-egg__post--r { right: 0; }
+
+  .goal-egg__bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--clr-white);
+    border-radius: 2px;
+  }
+
+  .goal-egg__mesh {
+    position: absolute;
+    inset: 4px 4px 0 4px;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,0.18) 0px, rgba(255,255,255,0.18) 1px,
+        transparent 1px, transparent 12px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,0.18) 0px, rgba(255,255,255,0.18) 1px,
+        transparent 1px, transparent 12px
+      );
+  }
+
+  .goal-egg__text {
+    position: absolute;
+    right: 3%;
+    bottom: calc(12% + 92px);
+    font-family: var(--ff-display);
+    font-size: 2.2rem;
+    color: var(--clr-red);
+    text-shadow: 0 2px 20px rgba(200,16,46,0.55);
+    opacity: 0;
+    transform: scale(0.4);
+    transform-origin: center bottom;
+  }
+
+  /* Active state — JS adds .goal-egg--active */
+  .goal-egg--active .goal-egg__net {
+    opacity: 1;
+  }
+
+  /* Ball transform is driven by rAF in JS — no CSS animation needed */
+
+  @keyframes egg-goal-text {
+    from { opacity: 0; transform: scale(0.4); }
+    to   { opacity: 1; transform: scale(1);   }
+  }
+
 }

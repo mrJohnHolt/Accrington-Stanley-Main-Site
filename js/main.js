@@ -336,6 +336,133 @@
 
 
 /* ================================================================
+   Goal Easter Egg — hover "Get Tickets" in the hero on desktop.
+   Two-phase rAF bezier: cursor → bounce off countdown widget → goal.
+   ================================================================ */
+(function () {
+  if (window.innerWidth < 1024) return;
+
+  var btn      = document.querySelector('.hero-ctas .btn-ghost');
+  var egg      = document.querySelector('.goal-egg');
+  if (!btn || !egg) return;
+
+  var hero      = document.querySelector('.hero');
+  var countdown = document.getElementById('hero-countdown');
+  var rafId  = null;
+  var fadeId = null;
+
+  function cubicBezier(t, p0, p1, p2, p3) {
+    var mt = 1 - t;
+    return mt*mt*mt*p0 + 3*mt*mt*t*p1 + 3*mt*t*t*p2 + t*t*t*p3;
+  }
+  function easeInOutQuad(t) { return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+
+  btn.addEventListener('mouseenter', function (e) {
+    if (rafId)  { cancelAnimationFrame(rafId); rafId = null; }
+    if (fadeId) { clearTimeout(fadeId);        fadeId = null; }
+
+    var ball     = egg.querySelector('.goal-egg__ball');
+    var goalText = egg.querySelector('.goal-egg__text');
+    var heroRect = hero.getBoundingClientRect();
+
+    /* Ball starts at cursor */
+    var x0 = e.clientX - heroRect.left;
+    var y0 = e.clientY - heroRect.top;
+    ball.style.left      = x0 + 'px';
+    ball.style.top       = y0 + 'px';
+    ball.style.opacity   = '1';
+    ball.style.transform = 'translate(0,0) rotate(0deg)';
+
+    /* Bounce area: bottom-centre of countdown widget */
+    var cdRect  = countdown ? countdown.getBoundingClientRect() : null;
+    var bounceX = cdRect ? cdRect.left + cdRect.width / 2 - heroRect.left : heroRect.width * 0.72;
+    var bounceY = cdRect ? cdRect.bottom - heroRect.top                   : heroRect.height * 0.55;
+
+    /* Goal net centre */
+    var goalX = heroRect.width  * 0.96 - 55;
+    var goalY = heroRect.height * 0.88 - 40;
+
+    /*
+     * Cubic bezier — two control points shape the arc through the bounce.
+     * cp1 pulls the ball upward toward the countdown.
+     * cp2 deflects it downward away from the widget toward the goal.
+     * Velocity is continuous at the bounce point so there is no stall.
+     */
+    var cp1X = x0  + (bounceX - x0)  * 0.55;
+    var cp1Y = Math.min(y0, bounceY) - 100;
+    var cp2X = bounceX + (goalX - bounceX) * 0.25;
+    var cp2Y = bounceY + 80;
+
+    egg.classList.add('goal-egg--active');
+    goalText.style.animation = '';
+    goalText.style.opacity   = '0';
+    goalText.style.transform = 'scale(0.4)';
+
+    var duration = 1900;
+    var startTs  = null;
+
+    function step(ts) {
+      if (!startTs) startTs = ts;
+      var raw = Math.min((ts - startTs) / duration, 1);
+      var t   = easeInOutQuad(raw);
+
+      var dx = cubicBezier(t, 0, cp1X - x0, cp2X - x0, goalX - x0);
+      var dy = cubicBezier(t, 0, cp1Y - y0, cp2Y - y0, goalY - y0);
+      ball.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + (raw * 560) + 'deg)';
+
+      if (raw < 1) {
+        rafId = requestAnimationFrame(step);
+      } else {
+        goalText.style.animation = 'egg-goal-text 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards';
+        rafId = null;
+        /* Fade everything out 0.5s after GOAL! finishes appearing (0.4s + 0.5s) */
+        fadeId = setTimeout(function () {
+          var net = egg.querySelector('.goal-egg__net');
+          /* Clear animation fill so inline opacity can take effect */
+          goalText.style.animation = 'none';
+          goalText.style.opacity   = '1';
+          goalText.style.transform = 'scale(1)';
+          /* Force reflow before transitioning */
+          void goalText.offsetHeight;
+          goalText.style.transition = 'opacity 0.4s ease';
+          ball.style.transition     = 'opacity 0.4s ease';
+          net.style.transition      = 'opacity 0.4s ease';
+          goalText.style.opacity    = '0';
+          ball.style.opacity        = '0';
+          net.style.opacity         = '0';
+          fadeId = setTimeout(function () {
+            egg.classList.remove('goal-egg--active');
+            goalText.style.transition = '';
+            goalText.style.animation  = '';
+            goalText.style.opacity    = '';
+            goalText.style.transform  = '';
+            ball.style.transition     = '';
+            net.style.transition      = '';
+            net.style.opacity         = '';
+            fadeId = null;
+          }, 400);
+        }, 900);
+      }
+    }
+
+    rafId = requestAnimationFrame(step);
+  });
+
+  btn.addEventListener('mouseleave', function () {
+    if (rafId)  { cancelAnimationFrame(rafId); rafId = null; }
+    if (fadeId) { clearTimeout(fadeId);        fadeId = null; }
+    egg.classList.remove('goal-egg--active');
+
+    var ball = egg.querySelector('.goal-egg__ball');
+    if (ball) { ball.style.opacity = '0'; ball.style.transform = 'translate(0,0) rotate(0deg)'; }
+
+    var goalText = egg.querySelector('.goal-egg__text');
+    if (goalText) { goalText.style.animation = ''; goalText.style.opacity = '0'; goalText.style.transform = 'scale(0.4)'; }
+  });
+})();
+
+
+/* ================================================================
    Smooth scroll polyfill for anchor links (Safari fallback)
    ================================================================ */
 (function () {
