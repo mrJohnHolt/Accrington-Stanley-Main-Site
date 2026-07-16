@@ -214,7 +214,9 @@
   var fixtureRows = Array.from(document.querySelectorAll('.fixture-row[data-target]'));
   if (!fixtureRows.length) return;
 
-  var target = new Date(fixtureRows[0].dataset.target);
+  var buttons = [];
+  var currentIndex = 0;
+  var target;
 
   function pad(n) { return String(n).padStart(2, '0'); }
 
@@ -230,11 +232,29 @@
     });
   }
 
+  function applyFixture(index) {
+    currentIndex = index;
+    var row = fixtureRows[index];
+    var name = row.querySelector('.fixture-home').textContent.trim();
+    target = new Date(row.dataset.target);
+    if (elOpponent) elOpponent.textContent = name;
+    if (elDate)     elDate.textContent     = fmtDate(target);
+    if (elTime)     elTime.textContent     = fmtTime(target);
+    if (elVenue)    elVenue.textContent    = row.dataset.venue || '';
+    buttons.forEach(function (b) { b.classList.remove('active'); });
+    if (buttons[index]) buttons[index].classList.add('active');
+  }
+
   function tick() {
     var diff = target - Date.now();
     if (diff <= 0) {
-      elDays.textContent = elHours.textContent = elMins.textContent = elSecs.textContent = '00';
-      return;
+      if (currentIndex < fixtureRows.length - 1) {
+        applyFixture(currentIndex + 1);
+        diff = target - Date.now();
+      } else {
+        elDays.textContent = elHours.textContent = elMins.textContent = elSecs.textContent = '00';
+        return;
+      }
     }
     elDays.textContent  = pad(Math.floor(diff / 86400000));
     elHours.textContent = pad(Math.floor((diff % 86400000) / 3600000));
@@ -242,24 +262,27 @@
     elSecs.textContent  = pad(Math.floor((diff % 60000)    / 1000));
   }
 
+  /* Find the first future fixture, or fall back to the last one */
+  var now = Date.now();
+  for (var i = 0; i < fixtureRows.length; i++) {
+    if (new Date(fixtureRows[i].dataset.target).getTime() > now) {
+      currentIndex = i;
+      break;
+    }
+    currentIndex = fixtureRows.length - 1;
+  }
+
   /* Build picker buttons dynamically from fixture rows */
   if (pickerEl) {
-    var buttons = [];
     fixtureRows.forEach(function (row, i) {
       var name = row.querySelector('.fixture-home').textContent.trim();
       var btn  = document.createElement('button');
-      btn.className = 'cp-btn' + (i === 0 ? ' active' : '');
+      btn.className = 'cp-btn' + (i === currentIndex ? ' active' : '');
       btn.textContent = name.slice(0, 3).toUpperCase();
       btn.setAttribute('aria-label', 'Countdown to ' + name);
 
       btn.addEventListener('click', function () {
-        target = new Date(row.dataset.target);
-        if (elOpponent) elOpponent.textContent = name;
-        if (elDate)     elDate.textContent     = fmtDate(target);
-        if (elTime)     elTime.textContent     = fmtTime(target);
-        if (elVenue)    elVenue.textContent    = row.dataset.venue || '';
-        buttons.forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
+        applyFixture(i);
         tick();
       });
 
@@ -268,6 +291,7 @@
     });
   }
 
+  applyFixture(currentIndex);
   tick();
   setInterval(tick, 1000);
 })();
