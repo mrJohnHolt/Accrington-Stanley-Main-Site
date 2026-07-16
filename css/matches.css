@@ -41,9 +41,32 @@
   cursor: not-allowed;
   transition: none;
   border: none;
+  position: relative;
+}
+
+.btn-disabled:hover::after {
+  content: 'Coming soon!';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--clr-dark);
+  color: var(--clr-white);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--r-sm);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  margin-bottom: 0.5rem;
+  pointer-events: none;
+  animation: fade-up 0.3s ease-out;
 }
 
 html[data-theme="dark"] .btn-disabled {
   background: var(--clr-dark-3);
   color: var(--clr-grey);
+}
+
+html[data-theme="dark"] .btn-disabled:hover::after {
+  background: var(--clr-white);
+  color: var(--clr-dark);
 }
