@@ -1,0 +1,49 @@
+/* ================================================================
+   Matches page styles
+   ================================================================ */
+
+.matches-month-header {
+  padding-bottom: var(--sp-md);
+  border-top: 2px solid var(--clr-red);
+  margin-bottom: 0;
+}
+
+.matches-month-header:first-of-type {
+  border-top: none;
+  margin-top: 0;
+  padding-top: var(--sp-lg);
+}
+
+.fixtures-month-title {
+  font-family: var(--ff-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--clr-red);
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+.fixture-row--next {
+  border-left: 4px solid var(--clr-red);
+  background: var(--clr-red-muted);
+}
+
+.btn-disabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--r-md);
+  background: var(--clr-grey-lt);
+  color: var(--clr-grey);
+  cursor: not-allowed;
+  transition: none;
+  border: none;
+}
+
+html[data-theme="dark"] .btn-disabled {
+  background: var(--clr-dark-3);
+  color: var(--clr-grey);
+}
