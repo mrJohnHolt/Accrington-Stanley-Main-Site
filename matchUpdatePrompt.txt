@@ -1,0 +1,50 @@
+Implement the following plan in the Accrington Stanley Main Site repo (l:\gitRepositories\Accrington Stanley Main Site). Read .claude/commands/web-standards.md and .claude/commands/frontend-design.md first as required by CLAUDE.md.
+
+CONTEXT
+Already done in an earlier pass: the hero countdown widget on index.html auto-advances to the next fixture once it hits 00:00:00:00 (js/main.js:201-297).
+
+Remaining work, already scoped and confirmed with the user:
+1. The small per-row Days/Hrs/Mins/Secs countdown injected into each .fixture-row (js/main.js:540-590, "Per-fixture countdown timers") currently freezes at 00:00:00:00 forever once a match kicks off. It should instead show a "Kick Off!" label.
+2. Two hours after kickoff (assumed match duration), that finished fixture should be replaced by the next match — a full rolling-window behaviour, confirmed to apply on both index.html (3-row "Upcoming Matches" preview) and matches.html (full season schedule).
+
+This needs more than a small JS tweak because today index.html and matches.html each hardcode their own separate fixture rows as static HTML. For the homepage's 3-row preview to roll forward into a fixture it doesn't already contain, and for the full schedule to correctly drop finished games, both pages need to render from one shared list of all season fixtures rather than duplicated static markup.
+
+APPROACH
+
+1. Single source of truth: js/fixtures-data.js (new file)
+An array of fixture objects covering the full 2026/27 season currently hardcoded across index.html (3 rows) and matches.html (~40 rows, grouped by month). Port the existing real data (teams, target ISO datetime, venue, competition, home/away, tickets enabled/disabled) into one array, e.g.:
+
+window.ASFC_FIXTURES = [
+  { home: 'Bradford City', ha: 'H', target: '2026-07-17T18:30:00Z', venue: 'Wham Stadium · Home', competition: 'Pre-Season Friendly', ticketsDisabled: false },
+  // ...all fixtures currently in matches.html, in chronological order
+];
+
+Day/month labels, aria-labels, and the HH:MM kickoff time are all derivable from target at render time — no need to duplicate them in the data.
+
+2. Render engine: js/fixtures-render.js (new file)
+- MATCH_DURATION_MS = 2 * 60 * 60 * 1000
+- isFinished(fixture, now) — now > new Date(fixture.target).getTime() + MATCH_DURATION_MS
+- activeFixtures(now) — ASFC_FIXTURES filtered to not-yet-finished, in chronological order (list is already authored in order)
+- buildRowEl(fixture) — builds a .fixture-row DOM node with the exact same inner structure/classes used today (fixture-date, fixture-teams, fixture-meta, fixture-ha, fixture-comp, fixture-ko, ticket btn/btn-disabled) so existing CSS and the main.js/matches.js selectors keep working untouched.
+- renderPreview(rootEl, now) — takes the first 3 active fixtures, rebuilds rootEl's rows (used by index.html's .fixtures-list).
+- renderSchedule(rootEl, now) — groups all active fixtures by month/year, rebuilds .matches-month-header + .fixtures-list blocks inside rootEl (used by matches.html); a month is only rendered if it still has an active fixture.
+- init() — on DOMContentLoaded, renders whichever root(s) exist on the current page, then re-checks every 30s whether the active-fixture set has changed (compare fixture count/ids) and only rebuilds when it actually has (avoids wiping countdown-bearing DOM every tick). After each rebuild, dispatches document.dispatchEvent(new CustomEvent('fixtures:rendered')) so dependent countdown code can re-bind to the new rows.
+
+3. Adjust js/main.js
+- Wrap the existing hero countdown IIFE (js/main.js:201-297) and per-fixture countdown IIFE (js/main.js:540-590) bodies in named init functions that:
+  - Run once on DOMContentLoaded (as now).
+  - Re-run on the new fixtures:rendered event, clearing any previous setIntervals before re-querying .fixture-row[data-target] and re-binding — so a rebuilt row set doesn't leave stale timers or point at removed DOM nodes.
+- In the per-fixture countdown's tick(), when diff <= 0: stop that row's own interval and swap its countdown markup for a single "Kick Off!" label (styled with the existing brand accent --clr-red, new rule near css/style.css:1241-1267) instead of freezing at zeros. The row itself will later disappear via the render engine's 2-hour cutoff.
+
+4. Adjust js/matches.js
+Wrap the existing "highlight next fixture" logic in an init function, run on DOMContentLoaded and on fixtures:rendered (it already recomputes from live DOM each call, so the change is just making it re-runnable).
+
+5. Markup changes
+- index.html: replace the 3 static .fixture-row divs inside the #matches .fixtures-list (index.html:408-470) with the same empty .fixtures-list container — fixtures-render.js populates it.
+- matches.html: replace the entire hand-authored month-header/fixtures-list block (matches.html:79-501) with one empty root container (e.g. <div id="fixtures-schedule-root"></div>) that fixtures-render.js populates.
+- Both pages: add <script src="js/fixtures-data.js"></script> and <script src="js/fixtures-render.js"></script> before main.js/matches.js, so rows exist before the countdown scripts' DOMContentLoaded handlers run (handlers fire in registration order).
+
+VERIFICATION
+- Serve via node serve.mjs, view http://localhost:3000 and http://localhost:3000/matches.html directly.
+- Confirm homepage preview still shows the same 3 upcoming fixtures as before, and the full schedule on matches.html still lists everything, grouped by month, matching today's data exactly (a pure refactor should produce an identical initial render).
+- Temporarily edit a fixture's target a few seconds in the future via dev tools: confirm its row shows "Kick Off!" at zero, and roughly 2 hours later (or by editing MATCH_DURATION_MS temporarily for a quick manual test) confirm the row is removed and, on the homepage, replaced by the next fixture; on matches.html, confirm an emptied month's header also disappears.
